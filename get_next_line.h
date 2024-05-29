@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:26 by yehara            #+#    #+#             */
-/*   Updated: 2024/05/22 22:33:48 by yehara           ###   ########.fr       */
+/*   Updated: 2024/05/29 20:10:44 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,26 @@
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
-//lib
+// lib
 # include <stdio.h>
+# include <fcntl.h>
+# include <stdlib.h>
+# include <unistd.h>
+
 
 typedef struct s_string
 {
 	char	*str;
 	size_t	len;
 	size_t	capa;
-}	t_string;
+}			t_string;
 
+// gnl
+char		*get_next_line(int fd);
 
-//gnl
+// gnl_utils
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+int			ft_getc(int fd);
+int			ft_putc(t_string *str, char c);
 
-//gnl_utils
 #endif
