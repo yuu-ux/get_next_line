@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:23 by yehara            #+#    #+#             */
-/*   Updated: 2024/05/29 20:47:20 by yehara           ###   ########.fr       */
+/*   Updated: 2024/05/30 20:17:42 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	*get_next_line(int fd)
 	ret.str = NULL;
 	ret.len = 0;
 	ret.capa = 0;
-
 	while (1)
 	{
 		c = ft_getc(fd);
