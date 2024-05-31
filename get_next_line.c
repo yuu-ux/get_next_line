@@ -6,27 +6,26 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:23 by yehara            #+#    #+#             */
-/*   Updated: 2024/05/30 20:17:42 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/01 02:36:04 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <stdlib.h>
 
 char	*get_next_line(int fd)
 {
 	t_string	ret;
-	char		c;
+	int		c;
 
-	ret.str = NULL;
-	ret.len = 0;
-	ret.capa = 0;
+	ret = (t_string){NULL, 0, 0};
 	while (1)
 	{
 		c = ft_getc(fd);
 		if (c == EOF)
 			break ;
 		c = ft_putc(&ret, c);
-		if (c == '\n')
+		if (c == EOF || c == '\n')
 			break ;
 	}
 	if (ret.len > 0)

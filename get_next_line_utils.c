@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:20 by yehara            #+#    #+#             */
-/*   Updated: 2024/05/30 20:17:04 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/01 02:17:11 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,42 @@ int	ft_getc(int fd)
 {
 	static char	buf[BUFFER_SIZE];
 	static char	*bufp;
-	static int	n;
+	static ssize_t	n;
 
 	if (n == 0)
 	{
 		n = read(fd, buf, BUFFER_SIZE);
 		if (n == -1)
 			return (-1);
+		if (n == 0)
+			return EOF;
 		bufp = buf;
 	}
-	if (--n >= 0)
-		return ((unsigned char) *bufp++);
-	else
-		return (EOF);
+	n--;
+	return ((unsigned char) *bufp++);
 }
 
 int	ft_putc(t_string *str, char c)
 {
 	char	*new_str;
 
-	if (str->str == NULL || str->len + 1 >= str->capa)
+	if (str->str == NULL || str->len + 1 > str->capa)
 	{
+		size_t capa;
+
 		if (str->capa > 0)
-			str->capa *= 2;
+			capa = str->capa * 2;
 		else
-			str->capa = 2;
-		new_str = malloc(str->capa * sizeof(char));
+			capa = 2;
+		new_str = malloc(capa);
 		if (!new_str)
 			return (-1);
-		if (str->str != NULL)
-		{
-			ft_memcpy(new_str, str->str, str->len * sizeof(char));
-			free(str->str);
-		}
+		ft_memcpy(new_str, str->str, str->len);
+		free(str->str);
 		str->str = new_str;
+		str->capa = capa;
 	}
-	str->str[str->len] = c;
-	str->len++;
+	str->str[str->len++] = c;
 	return (c);
 }
 

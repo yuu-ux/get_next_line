@@ -17,11 +17,13 @@ int main(void)
     }
 	
     int i = 0;
-    while (i < 7)
+    while (1)
     {
-		printf("line [%02d]: %s", i, line = get_next_line(fd));
+		printf("line [%02d]: %s", i, line = get_next_line(100));
         free(line);
         i++;
+        if (!line)
+        	break;
     }
 
     // while ((line = get_next_line(fd)) != NULL) {
@@ -31,3 +33,6 @@ int main(void)
     close(fd);  // ファイルディスクリプタを閉じる
     return 0;
 }
+
+
+
