@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:20 by yehara            #+#    #+#             */
-/*   Updated: 2024/06/01 19:28:24 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/02 22:24:31 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ int	ft_putc(t_string *str, char c)
 			capa = str->capa * 2;
 		else
 			capa = 2;
-		new_str = malloc(capa);
+		new_str = malloc(capa + 1);
+		ft_memset(new_str, 0, capa + 1);
 		if (!new_str)
 			return (-1);
 		ft_memcpy(new_str, str->str, str->len);
@@ -74,4 +75,19 @@ void	*ft_memcpy(void *dst, const void *src, size_t n)
 		i++;
 	}
 	return (buf);
+}
+
+void	*ft_memset(void *s, int c, size_t len)
+{
+	unsigned char	*str;
+	size_t			i;
+
+	str = (unsigned char *)s;
+	i = 0;
+	while (i < len)
+	{
+		str[i] = (unsigned char)c;
+		i++;
+	}
+	return (str);
 }

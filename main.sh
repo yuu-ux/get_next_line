@@ -1,1 +1,2 @@
-gcc -g -D BUFFER_SIZE=10 main.c get_next_line.c get_next_line.h get_next_line_utils.c && valgrind --leak-check=full --show-leak-kinds=all ./a.out
+
+cc -D BUFFER_SIZE=10000000 -fsanitize=address main.c get_next_line.c get_next_line_utils.c

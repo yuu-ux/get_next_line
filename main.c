@@ -1,9 +1,9 @@
 #include "get_next_line.h"
 
-// __attribute__((destructor))
-// static void destructor() {
-//     system("leaks -q a.out");
-// }
+__attribute__((destructor))
+static void destructor() {
+    system("leaks -q a.out");
+}
 
 int main(void)
 {
@@ -25,14 +25,8 @@ int main(void)
         if (!line)
         	break;
     }
-
-    // while ((line = get_next_line(fd)) != NULL) {
-    //     printf("%s", line);  // 行を出力
-    //     free(line);          // メモリ解放
-    // }
     close(fd);  // ファイルディスクリプタを閉じる
     return 0;
 }
-
 
 

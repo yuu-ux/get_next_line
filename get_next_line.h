@@ -6,13 +6,16 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:26 by yehara            #+#    #+#             */
-/*   Updated: 2024/06/01 21:24:04 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/02 22:22:33 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 42
+# elif BUFFER_SIZE > 2147483647 || BUFFER_SIZE <= 0
+#  undef BUFFER_SIZE
 #  define BUFFER_SIZE 42
 # endif
 
@@ -36,5 +39,6 @@ char		*get_next_line(int fd);
 void		*ft_memcpy(void *dst, const void *src, size_t n);
 int			ft_getc(int fd);
 int			ft_putc(t_string *str, char c);
+void    *ft_memset(void *s, int c, size_t len);
 
 #endif
