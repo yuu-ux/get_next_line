@@ -1,4 +1,5 @@
 make.sh
 a.out
 .vscode
-a.out.dSYM
+main.c
+test.txt

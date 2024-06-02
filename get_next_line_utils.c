@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:20 by yehara            #+#    #+#             */
-/*   Updated: 2024/06/01 02:17:11 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/01 19:28:24 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,31 +14,33 @@
 
 int	ft_getc(int fd)
 {
-	static char	buf[BUFFER_SIZE];
-	static char	*bufp;
+	static char		buf[BUFFER_SIZE];
+	static char		*bufp;
 	static ssize_t	n;
 
 	if (n == 0)
 	{
 		n = read(fd, buf, BUFFER_SIZE);
 		if (n == -1)
-			return (-1);
-		if (n == 0)
-			return EOF;
+		{
+			n = 0;
+			return (-2);
+		}
+		else if (n == 0)
+			return (EOF);
 		bufp = buf;
 	}
 	n--;
-	return ((unsigned char) *bufp++);
+	return ((unsigned char)*bufp++);
 }
 
 int	ft_putc(t_string *str, char c)
 {
 	char	*new_str;
+	size_t	capa;
 
 	if (str->str == NULL || str->len + 1 > str->capa)
 	{
-		size_t capa;
-
 		if (str->capa > 0)
 			capa = str->capa * 2;
 		else

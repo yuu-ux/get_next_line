@@ -19,7 +19,7 @@ int main(void)
     int i = 0;
     while (1)
     {
-		printf("line [%02d]: %s", i, line = get_next_line(100));
+		printf("[%d]: %s\n", i, line = get_next_line(fd));
         free(line);
         i++;
         if (!line)
