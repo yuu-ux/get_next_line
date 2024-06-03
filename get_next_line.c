@@ -6,7 +6,7 @@
 /*   By: yehara <yehara@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 20:33:23 by yehara            #+#    #+#             */
-/*   Updated: 2024/06/01 19:36:04 by yehara           ###   ########.fr       */
+/*   Updated: 2024/06/03 22:38:57 by yehara           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,14 @@ char	*get_next_line(int fd)
 		if (c == EOF)
 			break ;
 		c = ft_putc(&ret, c);
+		if (c == -1)
+			return (NULL);
 		if (c == '\n')
 			break ;
 	}
 	if (ret.len > 0)
-		ft_putc(&ret, '\0');
+		c = ft_putc(&ret, '\0');
+	if (c == -1)
+		return (NULL);
 	return (ret.str);
 }
